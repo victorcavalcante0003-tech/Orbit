@@ -1,10 +1,8 @@
-// src/server.ts
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import authRoutes from './routes/auth.routes';
-
-dotenv.config();
+import usersRoutes from './routes/users.routes';
 
 const app = express();
 app.use(cors());
@@ -15,6 +13,7 @@ app.get('/health', (req, res) => {
 });
 
 app.use('/auth', authRoutes);
+app.use('/users', usersRoutes);
 
 const PORT = process.env.PORT || 3333;
 app.listen(PORT, () => {
